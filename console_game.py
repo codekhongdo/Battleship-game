@@ -32,7 +32,7 @@ while True:
         ket_qua=Player1.board.receive_shot(x,y)
         Player3.afterShot(ket_qua)
         while len(Player3.targets) > 0:
-            print(f"🔥 Máy đang nã combo đạn xung quanh!")
+            print(f" Máy đang nã combo đạn xung quanh!")
             x,y=Player3.takeShot()
             ket_qua_combo=Player1.board.receive_shot(x,y)
             Player3.afterShot(ket_qua_combo)
