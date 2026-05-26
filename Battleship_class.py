@@ -34,6 +34,8 @@ class Board:
             if (direction=='V'):
                 list_potitions.append((start_x,start_y+i))
         for x,y in list_potitions:
+            if (direction == 'S') and (start_x>8 or start_y>8):
+                return False
             if (x < 0 or x >= 10 or y < 0 or y >= 10):
                 print("lỗi:tàu bị lòi ra ngoài bàn cờ")
                 return False
