@@ -4,7 +4,7 @@ import os
 import sys
 pygame.init()
 #SET UP MÀN HÌNH
-os.environ['SDL_VIDEO_WINDOW_POS'] = "10,30"
+os.environ['SDL_VIDEO_WINDOW_POS'] = "150,150"
 CELL_SIZE=50
 MARGIN=50
 MARGIN_BOTTOM=40
@@ -171,6 +171,7 @@ while True:
                             Draw_AI_ship()
                             screen = pygame.display.set_mode((WINDOW_WIDTH_PLAYING, SCREEN_SIZE + MARGIN_BOTTOM))
                             game_state="PLAYING"
+        # chơi
         elif game_state=="PLAYING":
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 mouse_x = event.pos[0]
@@ -180,22 +181,32 @@ while True:
                 if (0 <= grid_x <= 9) and (0 <= grid_y <= 9):
                     if Player2.board.grid[grid_y][grid_x] < 2:
                         player_shot_result = Player2.board.receive_shot(grid_x, grid_y)
+                        Draw_Hits_Misses(offset_x=SCREEN_SIZE, board=Player2.board)
+                        pygame.display.update()
                         if Player2.board.check_lose():
+                            pygame.time.delay(1000)
                             game_state="VICTORY"
                             continue
                         ai_shot=Player2.takeShot()
                         if ai_shot is not None:
                             ax, ay = ai_shot
                             ai_shot_result = Player1.board.receive_shot(ax, ay)
+                            Draw_Hits_Misses(offset_x=0, board=Player1.board)
+                            pygame.display.update()
                             if level == 2:
                                 Player2.afterShot(ai_shot_result)
                                 while len(Player2.targets) >0:
                                     ax, ay=Player2.takeShot()
                                     ai_shot_result=Player1.board.receive_shot(ax,ay)
                                     Player2.afterShot(ai_shot_result)
-                                    if Player2.board.check_lose():
+                                    Draw_Hits_Misses(offset_x=0, board=Player1.board)
+                                    pygame.display.update()
+                                    pygame.time.delay(300)
+                                    if Player1.board.check_lose():
                                         game_state="GAME_OVER"
-                            if Player1.board.check_lose():
+                                        break
+                            if Player1.board.check_lose() and game_state != "GAME_OVER":
+                                pygame.time.delay(1000)
                                 game_state = "GAME_OVER"
     # vẽ home
     if game_state =="INPUT_NAME":
