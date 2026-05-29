@@ -284,7 +284,7 @@ while True:
                     current_ship_idx = 0
                     current_direction = 'H'
                     user_name = ""
-                    screen = pygame.display.set_mode((SCREEN_SIZE, SCREEN_SIZE))
+                    screen = pygame.display.set_mode((SCREEN_SIZE, SCREEN_SIZE+MARGIN_BOTTOM))
                     game_state="INPUT_NAME"
                 elif btn_exit.collidepoint(event.pos):
                     pygame.quit()
