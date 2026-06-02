@@ -136,3 +136,6 @@ pip install pygame numpy
 python Battleship_gui.py
 ```
 (Trò chơi cũng cung cấp file console_game.py nếu muốn kiểm thử logic tĩnh trên Terminal)
+
+**VIDEO DEMO:**
+(https://drive.google.com/file/d/1NDc1NYIEIMna6Fvv8wkoWWnvSEfb35sZ/view?usp=drive_link)
