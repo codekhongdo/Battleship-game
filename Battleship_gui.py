@@ -243,7 +243,7 @@ while True:
                             game_state="VICTORY"
                             save_history(user_name, level, "THẮNG")
                             continue
-                        ai_shot=Player2.takeShot()
+                        ai_shot=Player2.takeShot(Player1.board)
                         if sound_on:
                             sound_explosion.play()
                         if ai_shot is not None:
@@ -254,7 +254,7 @@ while True:
                             if level == 2:
                                 Player2.afterShot(ai_shot_result)
                                 while len(Player2.targets) >0:
-                                    ax, ay=Player2.takeShot()
+                                    ax, ay=Player2.takeShot(Player1.board)
                                     if sound_on:
                                         sound_explosion.play()
                                     ai_shot_result=Player1.board.receive_shot(ax,ay)
